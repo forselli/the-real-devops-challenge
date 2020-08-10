@@ -1,0 +1,28 @@
+version: '3'
+
+networks:
+  my-app:
+    driver: bridge
+
+services:
+  mongodb:
+    # will build ./docker/web/Dockerfile
+    build: ./data/
+    container_name: mongodb
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: rootpassword
+        MONGO_INITDB_DATABASE: restaurants
+    ports:
+     - "27017:27017"
+    networks:
+     - my-app
+  app:
+    build: .
+    container_name: pythonapp
+    environment:
+        MONGO_URI: mongodb://user:password@localhost:27017/restaurants
+    ports:
+     - "8080:8080"
+    networks:
+     - my-app
