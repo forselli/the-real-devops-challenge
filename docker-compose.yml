@@ -21,7 +21,7 @@ services:
     build: .
     container_name: pythonapp
     environment:
-        MONGO_URI: mongodb://user:password@localhost:27017/restaurants
+        MONGO_URI: mongodb://user:password@mongodb:27017/restaurants
     ports:
      - "8080:8080"
     networks:
