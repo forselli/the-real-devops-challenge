@@ -1,0 +1,41 @@
+on: push
+name: deploy
+jobs:
+  deploy:
+    name: Test and deploy to cluster
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: Install Tox and any other packages
+      run: pip install tox
+    - name: Run Tox
+      # Run tox using the version of Python in `PATH`
+      run: tox -e py
+    #- name: build and push to docker
+      #uses: docker/build-push-action@v1
+      #with:
+        #username: ${{ secrets.DOCKER_USERNAME }}
+        #password: ${{ secrets.DOCKER_PASSWORD }}
+        #repository: ${{ github.repository }}
+        #tag_with_ref: true
+        #tag_with_sha: true
+        #tags: ${{ github.sha }}
+
+
+    #- name: deploy to cluster
+      #uses: steebchen/kubectl@master
+      #env:
+        #KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      #with:
+        #args: set image --record deployment/my-app prueba-gha=${{ github.repository }}:${{ github.sha }}
+    #- name: verify deployment
+      #uses: steebchen/kubectl@master
+      #env:
+        #KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        #KUBECTL_VERSION: "1.15"
+      #with:
+        #args: '"rollout status deployment/my-app"'
