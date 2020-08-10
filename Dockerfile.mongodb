@@ -1,0 +1,9 @@
+FROM mongo:latest
+
+COPY ./data/mongo-init.js /docker-entrypoint-initdb.d/mongo-init.js
+COPY ./data/populate-db.sh /docker-entrypoint-initdb.d/populate-db.sh
+COPY ./data/restaurant.json /restaurant.json
+
+EXPOSE 27017
+
+CMD ["mongod"]

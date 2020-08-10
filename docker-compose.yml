@@ -7,7 +7,9 @@ networks:
 services:
   mongodb:
     # will build ./docker/web/Dockerfile
-    build: ./data/
+    build:
+        context: .
+        dockerfile: Dockerfile.mongodb
     container_name: mongodb
     environment:
         MONGO_INITDB_ROOT_USERNAME: root
@@ -18,7 +20,9 @@ services:
     networks:
      - my-app
   app:
-    build: .
+    build:
+        context: .
+        dockerfile: Dockerfile.pythonapp
     container_name: pythonapp
     environment:
         MONGO_URI: mongodb://user:password@mongodb:27017/restaurants
