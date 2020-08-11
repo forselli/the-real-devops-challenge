@@ -3,10 +3,9 @@ version: '3'
 networks:
   my-app:
     driver: bridge
-
+    
 services:
   mongodb:
-    # will build ./docker/web/Dockerfile
     build:
         context: .
         dockerfile: Dockerfile.mongodb
