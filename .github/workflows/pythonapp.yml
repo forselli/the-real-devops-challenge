@@ -45,4 +45,4 @@ jobs:
     - name: Check cluster status
       run: kubectl get all
     - name: Check app is working
-      run: curl localhost:27017/api/v1/restaurant | jq length
+      run: curl localhost:32320/api/v1/restaurant | jq length
