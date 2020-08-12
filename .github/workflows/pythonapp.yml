@@ -44,7 +44,7 @@ jobs:
     - name: Check cluster status
       run: kubectl get all
     - name: Check app is working
-      run: curl localhost:32320/api/v1/restaurant | jq length
+      run: curl ident.me:32320/api/v1/restaurant | jq length
     #- name: curl
       #uses: wei/curl@master
       #with:
