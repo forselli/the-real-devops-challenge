@@ -41,10 +41,12 @@ jobs:
         kubernetes version: 'v1.18.2'
     - name: Deploy app
       run: kubectl create -f kubernetes-deployment.yaml
+    - name: Deploy app
+      run: sleep 10
     - name: Check cluster status
       run: kubectl get all
     - name: Check app is working
-      run: curl ident.me:32320/api/v1/restaurant | jq length
+      run: curl localhost:32320/api/v1/restaurant | jq length
     #- name: curl
       #uses: wei/curl@master
       #with:
