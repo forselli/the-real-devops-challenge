@@ -42,10 +42,10 @@ jobs:
     - name: Deploy app
       run: kubectl create -f kubernetes-deployment.yaml
     - name: Wait app to be deployed
-      run: sleep 60
+      run: sleep 120
     - name: Check cluster status
       run: kubectl get all
-    - name: Check api
+    - name: curl
       uses: wei/curl@master
       with:
         args: localhost:32320/api/v1/restaurant
