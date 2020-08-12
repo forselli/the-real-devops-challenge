@@ -45,7 +45,6 @@ jobs:
       run: sleep 120
     - name: Check cluster status
       run: kubectl get all
-    - name: curl
-      uses: wei/curl@master
-      with:
-        args: localhost:32320/api/v1/restaurant
+    - name: Check app is working
+      run: bash <(curl localhost:32320/api/v1/restaurantes) -Z
+
