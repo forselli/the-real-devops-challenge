@@ -40,20 +40,9 @@ jobs:
         minikube version: 'v1.9.2'
         kubernetes version: 'v1.18.2'
         #github token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Interact with the cluster
+    - name: Deploy app
       run: kubectl create -f kubernetes-deployment.yaml
-
-
-    #- name: deploy to cluster
-      #uses: steebchen/kubectl@master
-      #env:
-        #KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      #with:
-        #args: set image --record deployment/my-app prueba-gha=${{ github.repository }}:${{ github.sha }}
-    #- name: verify deployment
-      #uses: steebchen/kubectl@master
-      #env:
-        #KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        #KUBECTL_VERSION: "1.15"
-      #with:
-        #args: '"rollout status deployment/my-app"'
+    - name: Check cluster status
+      run: kubectl get all
+    - name: Check app is working
+      run: curl localhost:27017/api/v1/restaurant | jq length
