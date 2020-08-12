@@ -41,7 +41,7 @@ jobs:
         kubernetes version: 'v1.18.2'
         #github token: ${{ secrets.GITHUB_TOKEN }}
     - name: Interact with the cluster
-      run: kubectl get nodes
+      run: kubectl create -f kubernetes-deployment.yaml
 
 
     #- name: deploy to cluster
