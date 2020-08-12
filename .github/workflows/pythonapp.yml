@@ -42,7 +42,7 @@ jobs:
     - name: Deploy app
       run: kubectl create -f kubernetes-deployment.yaml
     - name: Deploy app
-      run: sleep 10
+      run: sleep 60
     - name: Check cluster status
       run: kubectl get all
     - name: Check app is working
